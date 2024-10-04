@@ -9,15 +9,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+
   await fb_core.Firebase.initializeApp(
     options: fb_core.FirebaseOptions(
-      apiKey: dotenv.env['API_KEY']!,
-      authDomain: dotenv.env['AUTH_DOMAIN']!,
-      projectId: dotenv.env['PROJECT_ID']!,
-      storageBucket: dotenv.env['STORAGE_BUCKET']!,
-      messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
-      appId: dotenv.env['APP_ID']!,
+      apiKey: const String.fromEnvironment('API_KEY'),
+      authDomain: const String.fromEnvironment('AUTH_DOMAIN'),
+      projectId: const String.fromEnvironment('PROJECT_ID'),
+      storageBucket: const String.fromEnvironment('STORAGE_BUCKET'),
+      messagingSenderId: const String.fromEnvironment('MESSAGING_SENDER_ID'),
+      appId: const String.fromEnvironment('APP_ID'),
     ),
   );
 

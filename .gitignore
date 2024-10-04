@@ -11,6 +11,9 @@
 .history
 .svn/
 migrate_working_dir/
+.cache/
+*.cache
+.firebase/
 
 # IntelliJ related
 *.iml
@@ -43,3 +46,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.github/workflows/firebase-hosting-pull-request.yml

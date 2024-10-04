@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "personalpageflutter"
+  },
+  "targets": {
+    "personalpageflutter": {
+      "hosting": {
+        "ablokhin": [
+          "ablokhin.web.app"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
