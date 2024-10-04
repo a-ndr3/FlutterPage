@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "ablokhin",
     "source": ".",
     "ignore": [
       "firebase.json",
