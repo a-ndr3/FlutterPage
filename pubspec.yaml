@@ -1,0 +1,47 @@
+name: project_spa_v3
+description: "A personal page project"
+publish_to: 'none'
+version: 0.3.0
+
+environment:
+  sdk: '>=3.4.0-99.1.beta <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  url_launcher: ^6.3.0
+  font_awesome_flutter: ^10.7.0
+  photo_view: ^0.15.0
+  carousel_slider: ^5.0.0
+  http: ^1.2.2
+  firebase_storage: ^12.3.2
+  firebase_core: ^3.6.0
+  flutter_dotenv: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+assets:
+  - .env
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Brandon
+      fonts:
+        - asset: fonts/Brandon_Grotesque_bold.otf
+          weight: 800
+        - asset: fonts/Brandon_Grotesque_medium.otf
+          weight: 500
+    - family: 'Code'
+      fonts: 
+        - asset: fonts/CODE Bold.otf
+          weight: 800
+        - asset: fonts/CODE Light.otf
+          weight: 100
+          
