@@ -16,17 +16,11 @@ class NewsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding:
-                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
-            child: Align(
-                alignment: Alignment.topLeft,
-                child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
-          ),
+          supportMethods.logoContainer(context),
           Column(
             children: [
-              supportMethods.pageNameContainer("NEWS"),
-              const SizedBox(height: 60.0),
+              supportMethods.pageNameContainer("NEWS", context),
+              SizedBox(height: 60.h),
               CarouselViews(tag: 'news'),
               SizedBox(height: 100.h),
               supportMethods.midButtons(context, 'ABOUT', 'PROJECTS'),

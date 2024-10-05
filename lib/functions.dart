@@ -24,6 +24,17 @@ class SupportMethods {
     }
   }
 
+  Padding logoContainer(context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
+      child: Align(
+          alignment: Alignment.topLeft,
+          child: Text('ANDRE',
+              style: getTextStyleWithDimensions(
+                  context, AppTextStyles.logoTextStyle, 16.sp, 18))),
+    );
+  }
+
   Container midButtons(context, String btn1, String btn2) {
     return Container(
       alignment: Alignment.center,
@@ -126,21 +137,24 @@ class SupportMethods {
     );
   }
 
-  Column pageNameContainer(String name) {
+  Column pageNameContainer(String name, context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 120),
+          padding: MediaQuery.of(context).size.width < 600
+              ? EdgeInsets.only(left: 60.w)
+              : const EdgeInsets.only(left: 120),
           child: Text(
             name,
-            style: AppTextStyles.aboutPageContainer,
+            style: getTextStyleWithDimensions(
+                context, AppTextStyles.aboutPageContainer, 16.sp, 28),
           ),
         ),
         SizedBox(height: 10.h),
         Container(
           height: 1.0,
-          width: 620,
+          width: 620.w,
           color: AppColors.primaryColorSidePanelText,
         ),
       ],
@@ -177,6 +191,18 @@ class SupportMethods {
     final data = await result.items.first.getData();
 
     return utf8.decode(data!);
+  }
+
+  bool isMobile(context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return screenWidth < 600 || (screenWidth < 950 && screenHeight < 500);
+  }
+
+  TextStyle getTextStyleWithDimensions(
+      context, TextStyle textStyle, double mobileSize, double desktopSize) {
+    return textStyle.copyWith(
+        fontSize: isMobile(context) ? mobileSize : desktopSize);
   }
 
   Future<void> fetchAndCategorizeCarouselItems() async {

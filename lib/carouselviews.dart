@@ -75,7 +75,7 @@ class _CarouselViewsState extends State<CarouselViews> {
         child: CarouselSlider(
           items: buildCarouselItems(carouselItems, context),
           options: CarouselOptions(
-            height: 300.h,
+            height: supportMethods.isMobile(context) ? 350.h : 300.h,
             enlargeCenterPage: true,
             autoPlay: true,
             autoPlayInterval: const Duration(seconds: 3),
@@ -95,64 +95,82 @@ class _CarouselViewsState extends State<CarouselViews> {
             context: context,
             builder: (BuildContext context) {
               return SafeArea(
-                child: Container(
-                  padding: EdgeInsets.only(top: 80.h),
-                  child: Dialog(
-                    backgroundColor: Colors.transparent,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(top: 80.h),
+                    child: Dialog(
+                      backgroundColor: Colors.transparent,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
                       ),
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          top: 50.h, left: 20.w, right: 20.w, bottom: 50.w),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 40.h),
-                          Text(
-                            item.title.toUpperCase(),
-                            style: AppTextStyles.aboutPageContainer
-                                .copyWith(fontSize: 12.sp),
-                          ),
-                          SizedBox(height: 20.h),
-                          HoverableElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              supportMethods.openUrl(item.url);
-                            },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('Open link',
-                                        style: AppTextStyles.buttonText
-                                            .copyWith(fontSize: 10.sp)),
-                                    SizedBox(width: 10),
-                                    Icon(Icons.arrow_outward,
-                                        size: 18,
-                                        color: Colors.white,
-                                        weight: 5,
-                                        fill: 1.0,
-                                        grade: 1.0),
-                                  ],
-                                ),
-                              ],
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            top: 50.h, left: 20.w, right: 20.w, bottom: 50.w),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 40.h),
+                            Text(
+                              item.title.toUpperCase(),
+                              style: supportMethods.getTextStyleWithDimensions(
+                                  context,
+                                  AppTextStyles.openDialogHeading,
+                                  12.sp,
+                                  18.sp),
                             ),
-                          ),
-                          SizedBox(height: 20.h),
-                          Text(
-                            item.description,
-                            style: AppTextStyles.additionalTextPureWhite,
-                          ),
-                        ],
+                            SizedBox(height: 20.h),
+                            HoverableElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                supportMethods.openUrl(item.url);
+                              },
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('Open link',
+                                          style: supportMethods
+                                              .getTextStyleWithDimensions(
+                                                  context,
+                                                  AppTextStyles.buttonText,
+                                                  7.sp,
+                                                  10)),
+                                      SizedBox(width: 10),
+                                      Icon(Icons.arrow_outward,
+                                          size: supportMethods.isMobile(context)
+                                              ? 10
+                                              : 18,
+                                          color: Colors.white,
+                                          weight: 5,
+                                          fill: 1.0,
+                                          grade: 1.0),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+                            Text(
+                              item.description,
+                              style: supportMethods.getTextStyleWithDimensions(
+                                  context,
+                                  AppTextStyles.openDialogDescription,
+                                  12.sp,
+                                  14.sp),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

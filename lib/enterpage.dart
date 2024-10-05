@@ -9,18 +9,17 @@ class EnterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final isMobile =
+        screenWidth < 600 || (screenWidth < 950 && screenHeight < 500);
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding:
-                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
-            child: const Align(
-                alignment: Alignment.topLeft,
-                child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
-          ),
+          supportMethods.logoContainer(context),
           Column(
             children: [
               Container(
@@ -45,12 +44,12 @@ class EnterPage extends StatelessWidget {
                           snapshot.hasData) {
                         return CircleAvatar(
                           backgroundImage: snapshot.data,
-                          radius: 80.r,
+                          radius: isMobile ? 120.r : 90.r,
                         );
                       } else {
                         return CircleAvatar(
                           backgroundColor: Colors.transparent,
-                          radius: 80.r,
+                          radius: isMobile ? 120.r : 90.r,
                         );
                       }
                     },
@@ -60,15 +59,15 @@ class EnterPage extends StatelessWidget {
               SizedBox(height: 20.h),
               Text(
                 'ANDREI BLOKHIN',
-                style:
-                    AppTextStyles.enterPageHeadline.copyWith(fontSize: 20.sp),
+                style: supportMethods.getTextStyleWithDimensions(
+                    context, AppTextStyles.enterPageHeadline, 24.sp, 48),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20.h),
               Text(
                 'TECHNICIAN / ASSOCIATE SOFTWARE ENGINEER',
-                style: AppTextStyles.enterPageDescription
-                    .copyWith(fontSize: 12.sp),
+                style: supportMethods.getTextStyleWithDimensions(
+                    context, AppTextStyles.enterPageDescription, 16.sp, 18),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 40.h),
@@ -80,8 +79,8 @@ class EnterPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('ENTER',
-                        style:
-                            AppTextStyles.buttonText.copyWith(fontSize: 10.sp)),
+                        style: supportMethods.getTextStyleWithDimensions(
+                            context, AppTextStyles.buttonText, 14.sp, 18)),
                   ],
                 ),
               ),

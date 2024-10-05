@@ -16,16 +16,10 @@ class ProjectsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding:
-                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
-            child: const Align(
-                alignment: Alignment.topLeft,
-                child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
-          ),
+          supportMethods.logoContainer(context),
           Column(
             children: [
-              supportMethods.pageNameContainer("PROJECTS"),
+              supportMethods.pageNameContainer("PROJECTS", context),
               SizedBox(height: 60.h),
               CarouselViews(tag: 'projects'),
               SizedBox(height: 100.h),

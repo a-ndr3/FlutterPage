@@ -14,16 +14,10 @@ class AboutPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding:
-                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
-            child: const Align(
-                alignment: Alignment.topLeft,
-                child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
-          ),
+          supportMethods.logoContainer(context),
           Column(
             children: [
-              supportMethods.pageNameContainer("ABOUT"),
+              supportMethods.pageNameContainer("ABOUT", context),
               SizedBox(height: 60.h),
               FutureBuilder<String>(
                 future: supportMethods.fetchTxtFile('about'),
@@ -32,17 +26,17 @@ class AboutPage extends StatelessWidget {
                       snapshot.hasData) {
                     return new Container(
                         width: 600.w,
-                        child: Text(
-                          snapshot.data!,
-                          strutStyle: StrutStyle(
-                            height: 1.h,
-                          ),
-                          textAlign: TextAlign.left,
-                          maxLines: 8,
-                          style: AppTextStyles.aboutPageMainText.copyWith(
-                            fontSize: 12.sp,
-                          ),
-                        ));
+                        child: Text(snapshot.data!,
+                            strutStyle: StrutStyle(
+                              height: 1.h,
+                            ),
+                            textAlign: TextAlign.left,
+                            maxLines: 8,
+                            style: supportMethods.getTextStyleWithDimensions(
+                                context,
+                                AppTextStyles.aboutPageMainText,
+                                13.sp,
+                                14.sp)));
                   } else {
                     return new Container(
                         width: 600.w,
@@ -63,11 +57,11 @@ class AboutPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('VIEW CV',
-                        style:
-                            AppTextStyles.buttonText.copyWith(fontSize: 10.sp)),
+                        style: supportMethods.getTextStyleWithDimensions(
+                            context, AppTextStyles.buttonText, 7.sp, 10)),
                     SizedBox(width: 10),
                     Icon(Icons.arrow_outward,
-                        size: 18,
+                        size: supportMethods.isMobile(context) ? 10 : 18,
                         color: Colors.white,
                         weight: 5,
                         fill: 1.0,
@@ -75,7 +69,7 @@ class AboutPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 200.h),
+              SizedBox(height: 150.h),
               supportMethods.midButtons(context, 'PROJECTS', 'NEWS'),
             ],
           ),
