@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_spa_v3/AppTextStyles.dart';
 import 'buttons.dart';
 import 'functions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutPage extends StatelessWidget {
   final supportMethods = SupportMethods();
@@ -13,26 +14,46 @@ class AboutPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 30.0, top: 20, right: 0, bottom: 5),
-            child: Align(
+          Padding(
+            padding:
+                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
+            child: const Align(
                 alignment: Alignment.topLeft,
                 child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
           ),
           Column(
             children: [
               supportMethods.pageNameContainer("ABOUT"),
-              const SizedBox(height: 60.0),
-              Text(
-                ' I am doing my master\'s in Software Engineering at the Johannes Kepler Universität Linz.\n Also, I work part-time at the Institute of Software Systems Engineering where I work \n with research software. In my spare time I check things in .NET, Dart and Java.',
-                strutStyle: StrutStyle(
-                  height: 1,
-                ),
-                textAlign: TextAlign.left,
-                maxLines: 8,
-                style: AppTextStyles.aboutPageMainText,
+              SizedBox(height: 60.h),
+              FutureBuilder<String>(
+                future: supportMethods.fetchTxtFile('about'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return new Container(
+                        width: 600.w,
+                        child: Text(
+                          snapshot.data!,
+                          strutStyle: StrutStyle(
+                            height: 1.h,
+                          ),
+                          textAlign: TextAlign.left,
+                          maxLines: 8,
+                          style: AppTextStyles.aboutPageMainText.copyWith(
+                            fontSize: 12.sp,
+                          ),
+                        ));
+                  } else {
+                    return new Container(
+                        width: 600.w,
+                        child: const Center(
+                            child: CircularProgressIndicator(
+                          color: Colors.white,
+                        )));
+                  }
+                },
               ),
-              const SizedBox(height: 60.0),
+              SizedBox(height: 60.h),
               HoverableElevatedButton(
                 onPressed: () {
                   supportMethods.openUrl(
@@ -41,7 +62,9 @@ class AboutPage extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('VIEW CV', style: AppTextStyles.buttonText),
+                    Text('VIEW CV',
+                        style:
+                            AppTextStyles.buttonText.copyWith(fontSize: 10.sp)),
                     SizedBox(width: 10),
                     Icon(Icons.arrow_outward,
                         size: 18,
@@ -52,7 +75,7 @@ class AboutPage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 310.0),
+              SizedBox(height: 200.h),
               supportMethods.midButtons(context, 'PROJECTS', 'NEWS'),
             ],
           ),
