@@ -6,10 +6,10 @@ import 'package:project_spa_v3/projectspage.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as fb_core;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await fb_core.Firebase.initializeApp(
     options: fb_core.FirebaseOptions(
       apiKey: const String.fromEnvironment('API_KEY'),
@@ -32,27 +32,31 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Andrei Blokhin',
-      theme: ThemeData(),
-      initialRoute: '/',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return _buildPageRoute(EnterPage());
-          case '/home':
-            return _buildPageRoute(AboutPage());
-          case '/news':
-            return _buildPageRoute(NewsPage());
-          case '/projects':
-            return _buildPageRoute(ProjectsPage());
-          case '/about':
-            return _buildPageRoute(AboutPage());
-          default:
-            return _buildPageRoute(EnterPage());
-        }
-      },
-    );
+    return ScreenUtilInit(
+        designSize: const Size(960, 1040),
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Andrei Blokhin',
+            theme: ThemeData(),
+            initialRoute: '/',
+            onGenerateRoute: (settings) {
+              switch (settings.name) {
+                case '/':
+                  return _buildPageRoute(EnterPage());
+                case '/home':
+                  return _buildPageRoute(AboutPage());
+                case '/news':
+                  return _buildPageRoute(NewsPage());
+                case '/projects':
+                  return _buildPageRoute(ProjectsPage());
+                case '/about':
+                  return _buildPageRoute(AboutPage());
+                default:
+                  return _buildPageRoute(EnterPage());
+              }
+            },
+          );
+        });
   }
 
   PageRouteBuilder _buildPageRoute(Widget page) {

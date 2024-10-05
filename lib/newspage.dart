@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_spa_v3/AppTextStyles.dart';
 import 'functions.dart';
 import 'carouselviews.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsPage extends StatelessWidget {
   final supportMethods = SupportMethods();
@@ -15,8 +16,9 @@ class NewsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 30.0, top: 20, right: 0, bottom: 5),
+          Padding(
+            padding:
+                EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text('ANDRE', style: AppTextStyles.logoTextStyle)),
@@ -26,7 +28,7 @@ class NewsPage extends StatelessWidget {
               supportMethods.pageNameContainer("NEWS"),
               const SizedBox(height: 60.0),
               CarouselViews(tag: 'news'),
-              const SizedBox(height: 200.0),
+              SizedBox(height: 100.h),
               supportMethods.midButtons(context, 'ABOUT', 'PROJECTS'),
             ],
           ),

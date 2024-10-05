@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +8,8 @@ import 'package:project_spa_v3/AppTextStyles.dart';
 import 'package:project_spa_v3/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'buttons.dart';
-import 'package:http/http.dart' as http;
 import 'carouselitem.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SupportMethods {
   void openUrl(String url) async {
@@ -38,27 +36,27 @@ class SupportMethods {
             },
             child: Text(
               'HOME',
-              style: AppTextStyles.buttonText,
+              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           HoverableElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/${btn1.toLowerCase()}');
             },
             child: Text(
               btn1,
-              style: AppTextStyles.buttonText,
+              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           HoverableElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/${btn2.toLowerCase()}');
             },
             child: Text(
               btn2,
-              style: AppTextStyles.buttonText,
+              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
             ),
           ),
         ],
@@ -68,21 +66,22 @@ class SupportMethods {
 
   Container linksContainer() {
     return Container(
-      padding: EdgeInsets.all(50),
-      margin: EdgeInsets.symmetric(vertical: 20).copyWith(right: 45),
+      padding:
+          EdgeInsets.only(top: 50.h, bottom: 50.h, left: 50.w, right: 50.w),
+      margin: EdgeInsets.symmetric(vertical: 20.h).copyWith(right: 20.w),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
                 icon: Icon(FontAwesomeIcons.github),
                 color: Color.fromRGBO(255, 255, 255, 0.8),
                 onPressed: () {
                   openUrl('https://github.com/a-ndr3');
                 }),
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
               icon: Icon(FontAwesomeIcons.linkedin),
               color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -90,7 +89,7 @@ class SupportMethods {
                 openUrl('https://www.linkedin.com/in/andreiblokhin/');
               },
             ),
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
               icon: Icon(FontAwesomeIcons.telegram),
               color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -98,7 +97,7 @@ class SupportMethods {
                 openUrl('https://t.me/andr_1110');
               },
             ),
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
               icon: Icon(FontAwesomeIcons.orcid),
               color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -106,7 +105,7 @@ class SupportMethods {
                 openUrl('https://orcid.org/0009-0006-5185-2635');
               },
             ),
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
               icon: Icon(FontAwesomeIcons.instagram),
               color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -114,7 +113,7 @@ class SupportMethods {
                 openUrl('https://instagram.com/a_blohin');
               },
             ),
-            SizedBox(width: 50.0),
+            SizedBox(width: 20.w),
             HoverIconButton(
                 icon: Icon(FontAwesomeIcons.envelope),
                 color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -127,26 +126,25 @@ class SupportMethods {
     );
   }
 
-  Container pageNameContainer(String name) {
-    return Container(
-        child: Column(
+  Column pageNameContainer(String name) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 120.0),
+          padding: const EdgeInsets.only(left: 120),
           child: Text(
             name,
             style: AppTextStyles.aboutPageContainer,
           ),
         ),
-        const SizedBox(height: 10.0),
+        SizedBox(height: 10.h),
         Container(
           height: 1.0,
           width: 620,
           color: AppColors.primaryColorSidePanelText,
         ),
       ],
-    ));
+    );
   }
 
   List<Widget> buildCarouselItems(int itemCount) {
@@ -171,6 +169,14 @@ class SupportMethods {
     final url = await result.items.first.getDownloadURL();
 
     return NetworkImage(url);
+  }
+
+  Future<String> fetchTxtFile(String fileName) async {
+    final ref = MainApp.storage.ref().child(fileName);
+    final ListResult result = await ref.listAll();
+    final data = await result.items.first.getData();
+
+    return utf8.decode(data!);
   }
 
   Future<void> fetchAndCategorizeCarouselItems() async {

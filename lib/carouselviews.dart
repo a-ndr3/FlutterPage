@@ -5,6 +5,7 @@ import 'package:project_spa_v3/buttons.dart';
 import 'package:project_spa_v3/functions.dart';
 import 'carouselitem.dart';
 import 'AppTextStyles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CarouselViews extends StatefulWidget {
   final String tag;
@@ -53,31 +54,31 @@ class _CarouselViewsState extends State<CarouselViews> {
       ));
     }
     if (hasError) {
-      return const Center(
+      return Center(
           child: Text('Error fetching carousel items',
-              style: AppTextStyles.sidePanelText));
+              style: AppTextStyles.sidePanelText.copyWith(fontSize: 12.sp)));
     }
 
     final List<CarouselItem>? carouselItems =
         CarouselItem.categorizedItems[widget.tag];
 
     if (carouselItems == null || carouselItems.isEmpty) {
-      return const Center(
+      return Center(
           child: Text('No carousel items available',
-              style: AppTextStyles.sidePanelText));
+              style: AppTextStyles.sidePanelText.copyWith(fontSize: 12.sp)));
     }
 
     return Center(
       child: Container(
-        width: 800,
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        width: 600.w,
+        padding: EdgeInsets.symmetric(vertical: 20.h),
         child: CarouselSlider(
           items: buildCarouselItems(carouselItems, context),
           options: CarouselOptions(
-            height: 300,
+            height: 300.h,
             enlargeCenterPage: true,
             autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 4),
+            autoPlayInterval: const Duration(seconds: 3),
             viewportFraction: 0.33,
           ),
         ),
@@ -95,7 +96,7 @@ class _CarouselViewsState extends State<CarouselViews> {
             builder: (BuildContext context) {
               return SafeArea(
                 child: Container(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: EdgeInsets.only(top: 80.h),
                   child: Dialog(
                     backgroundColor: Colors.transparent,
                     shape: const RoundedRectangleBorder(
@@ -107,31 +108,33 @@ class _CarouselViewsState extends State<CarouselViews> {
                       ),
                     ),
                     child: Container(
-                      padding: const EdgeInsets.only(
-                          top: 50.0, left: 20, right: 20, bottom: 50),
+                      padding: EdgeInsets.only(
+                          top: 50.h, left: 20.w, right: 20.w, bottom: 50.w),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 40),
+                          SizedBox(height: 40.h),
                           Text(
                             item.title.toUpperCase(),
-                            style: AppTextStyles.aboutPageContainer,
+                            style: AppTextStyles.aboutPageContainer
+                                .copyWith(fontSize: 12.sp),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20.h),
                           HoverableElevatedButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                               supportMethods.openUrl(item.url);
                             },
-                            child: const Column(
+                            child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text('Open link',
-                                        style: AppTextStyles.buttonText),
+                                        style: AppTextStyles.buttonText
+                                            .copyWith(fontSize: 10.sp)),
                                     SizedBox(width: 10),
                                     Icon(Icons.arrow_outward,
                                         size: 18,
@@ -144,7 +147,7 @@ class _CarouselViewsState extends State<CarouselViews> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20.h),
                           Text(
                             item.description,
                             style: AppTextStyles.additionalTextPureWhite,
@@ -160,9 +163,9 @@ class _CarouselViewsState extends State<CarouselViews> {
         },
         child: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 6.0),
-            width: 800,
-            height: 220,
+            margin: EdgeInsets.symmetric(horizontal: 6.w),
+            width: 600.w,
+            height: 220.h,
             decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(color: Colors.white, width: 2),
@@ -172,7 +175,7 @@ class _CarouselViewsState extends State<CarouselViews> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(item.imageUrl,
-                    width: 220, height: 180, fit: BoxFit.contain),
+                    width: 220.w, height: 180.h, fit: BoxFit.contain),
               ],
             ),
           ),
