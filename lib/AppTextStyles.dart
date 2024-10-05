@@ -92,13 +92,13 @@ class AppTextStyles {
   static const TextStyle openDialogHeading = TextStyle(
     fontFamily: 'Brandon',
     fontSize: 24,
-    fontWeight: FontWeight.w500,
-    color: AppColors.pureWhite,
+    fontWeight: FontWeight.w800,
+    color: AppColors.primaryColorText,
   );
   static const TextStyle openDialogDescription = TextStyle(
-    fontFamily: 'Code',
+    fontFamily: 'Brandon',
     fontSize: 18,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w500,
     color: AppColors.primaryColorText,
   );
 }

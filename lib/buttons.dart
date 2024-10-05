@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HoverIconButton extends StatefulWidget {
   final Icon icon;
@@ -73,8 +74,9 @@ class _HoverableElevatedButtonState extends State<HoverableElevatedButton> {
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       foregroundColor: Colors.transparent,
-      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-      side: BorderSide(color: Color.fromRGBO(255, 255, 255, 0.8), width: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      side:
+          const BorderSide(color: Color.fromRGBO(255, 255, 255, 0.8), width: 2),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
