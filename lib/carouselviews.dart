@@ -193,7 +193,14 @@ class _CarouselViewsState extends State<CarouselViews> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(item.imageUrl,
-                    width: 220.w, height: 180.h, fit: BoxFit.contain),
+                    width: 220.w,
+                    height: 180.h,
+                    fit: BoxFit.contain,
+                    headers: const {
+                      'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                      'Access-Control-Allow-Headers': 'Content-Type',
+                    }),
               ],
             ),
           ),

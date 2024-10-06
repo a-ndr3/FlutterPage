@@ -9,10 +9,7 @@ class EnterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final isMobile =
-        screenWidth < 600 || (screenWidth < 950 && screenHeight < 500);
+    final screentWirdth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -44,12 +41,14 @@ class EnterPage extends StatelessWidget {
                           snapshot.hasData) {
                         return CircleAvatar(
                           backgroundImage: snapshot.data,
-                          radius: isMobile ? 120.r : 90.r,
+                          radius:
+                              supportMethods.isMobile(context) ? 120.r : 90.r,
                         );
                       } else {
                         return CircleAvatar(
                           backgroundColor: Colors.transparent,
-                          radius: isMobile ? 120.r : 90.r,
+                          radius:
+                              supportMethods.isMobile(context) ? 120.r : 90.r,
                         );
                       }
                     },
@@ -60,14 +59,20 @@ class EnterPage extends StatelessWidget {
               Text(
                 'ANDREI BLOKHIN',
                 style: supportMethods.getTextStyleWithDimensions(
-                    context, AppTextStyles.enterPageHeadline, 24.sp, 48),
+                    context,
+                    AppTextStyles.enterPageHeadline,
+                    screentWirdth < 600 ? 32.sp : 24.sp,
+                    48),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20.h),
               Text(
                 'TECHNICIAN / ASSOCIATE SOFTWARE ENGINEER',
                 style: supportMethods.getTextStyleWithDimensions(
-                    context, AppTextStyles.enterPageDescription, 16.sp, 18),
+                    context,
+                    AppTextStyles.enterPageDescription,
+                    screentWirdth < 600 ? 22.sp : 16.sp,
+                    18),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 40.h),
@@ -80,7 +85,10 @@ class EnterPage extends StatelessWidget {
                   children: [
                     Text('ENTER',
                         style: supportMethods.getTextStyleWithDimensions(
-                            context, AppTextStyles.buttonText, 14.sp, 18)),
+                            context,
+                            AppTextStyles.buttonText,
+                            screentWirdth < 600 ? 24.sp : 14.sp,
+                            18)),
                   ],
                 ),
               ),

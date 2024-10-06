@@ -9,6 +9,7 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screentWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -69,7 +70,10 @@ class AboutPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 150.h),
+              SizedBox(
+                  height: supportMethods.isMobile(context) && screentWidth < 600
+                      ? 330.h
+                      : 180.h),
               supportMethods.midButtons(context, 'PROJECTS', 'NEWS'),
             ],
           ),
