@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_spa_v3/AppTextStyles.dart';
 import 'functions.dart';
 import 'carouselviews.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

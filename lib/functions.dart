@@ -31,11 +31,12 @@ class SupportMethods {
           alignment: Alignment.topLeft,
           child: Text('ANDRE',
               style: getTextStyleWithDimensions(
-                  context, AppTextStyles.logoTextStyle, 16.sp, 18))),
+                  context, AppTextStyles.logoTextStyle, 17.sp, 18))),
     );
   }
 
   Container midButtons(context, String btn1, String btn2) {
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
       child: Row(
@@ -47,7 +48,11 @@ class SupportMethods {
             },
             child: Text(
               'HOME',
-              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
+              style: getTextStyleWithDimensions(
+                  context,
+                  AppTextStyles.buttonText,
+                  screenWidth < 600 ? 10.sp : 7.sp,
+                  10.sp),
             ),
           ),
           const SizedBox(width: 10),
@@ -57,7 +62,11 @@ class SupportMethods {
             },
             child: Text(
               btn1,
-              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
+              style: getTextStyleWithDimensions(
+                  context,
+                  AppTextStyles.buttonText,
+                  screenWidth < 600 ? 10.sp : 7.sp,
+                  10.sp),
             ),
           ),
           const SizedBox(width: 10),
@@ -67,7 +76,11 @@ class SupportMethods {
             },
             child: Text(
               btn2,
-              style: AppTextStyles.buttonText.copyWith(fontSize: 10.sp),
+              style: getTextStyleWithDimensions(
+                  context,
+                  AppTextStyles.buttonText,
+                  screenWidth < 600 ? 10.sp : 7.sp,
+                  10.sp),
             ),
           ),
         ],
@@ -182,7 +195,11 @@ class SupportMethods {
     final ListResult result = await ref.listAll();
     final url = await result.items.first.getDownloadURL();
 
-    return NetworkImage(url);
+    return NetworkImage(url, headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    });
   }
 
   Future<String> fetchTxtFile(String fileName) async {

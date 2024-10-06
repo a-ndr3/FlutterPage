@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_spa_v3/functions.dart';
 
 class HoverIconButton extends StatefulWidget {
   final Icon icon;
@@ -24,6 +25,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
 
   @override
   Widget build(BuildContext context) {
+    final SupportMethods supportMethods = SupportMethods();
     return MouseRegion(
       onEnter: (_) => _setHovered(true),
       onExit: (_) => _setHovered(false),
@@ -37,7 +39,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
           child: Icon(
             color: widget.color,
             widget.icon.icon,
-            size: 25,
+            size: supportMethods.isMobile(context) ? 25.sp : 25,
           ),
         ),
       ),
@@ -69,12 +71,15 @@ class _HoverableElevatedButtonState extends State<HoverableElevatedButton> {
 
   @override
   Widget build(BuildContext context) {
+    final SupportMethods supportMethods = SupportMethods();
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: _isHovering ? Colors.black : Colors.black,
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       foregroundColor: Colors.transparent,
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      padding: supportMethods.isMobile(context)
+          ? EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h)
+          : EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       side:
           const BorderSide(color: Color.fromRGBO(255, 255, 255, 0.8), width: 2),
       shape: RoundedRectangleBorder(
