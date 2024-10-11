@@ -89,14 +89,14 @@ class _CarouselViewsState extends State<CarouselViews> {
   List<Widget> buildCarouselItems(
       List<CarouselItem> items, BuildContext context) {
     return items.map((item) {
-      return GestureDetector(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return SafeArea(
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return SafeArea(
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).pop();
@@ -184,27 +184,27 @@ class _CarouselViewsState extends State<CarouselViews> {
                       ),
                     ),
                   ),
-                ),
-              );
-            },
-          );
-        },
-        child: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 6.w),
-            width: 600.w,
-            height: 220.h,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: Colors.white, width: 2),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(item.imageUrl,
-                    width: 220.w, height: 180.h, fit: BoxFit.contain),
-              ],
+                );
+              },
+            );
+          },
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 6.w),
+              width: 600.w,
+              height: 220.h,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(color: Colors.white, width: 2),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(item.imageUrl,
+                      width: 220.w, height: 180.h, fit: BoxFit.contain),
+                ],
+              ),
             ),
           ),
         ),
