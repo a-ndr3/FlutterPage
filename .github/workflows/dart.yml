@@ -43,13 +43,13 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Download Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: web-build
         path: build/web
 
     - name: Deploy to Firebase
-      uses: w9jds/firebase-action@v2
+      uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting:ablokhin
       env:
