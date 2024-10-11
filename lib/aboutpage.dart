@@ -59,7 +59,12 @@ class AboutPage extends StatelessWidget {
                   children: [
                     Text('VIEW CV',
                         style: supportMethods.getTextStyleWithDimensions(
-                            context, AppTextStyles.buttonText, 7.sp, 10)),
+                            context,
+                            AppTextStyles.buttonText,
+                            supportMethods.isMobileWidth(context)
+                                ? 28.sp
+                                : 6.sp,
+                            8.sp)),
                     SizedBox(width: 10),
                     Icon(Icons.arrow_outward,
                         size: supportMethods.isMobile(context) ? 10 : 18,
@@ -71,7 +76,8 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                  height: supportMethods.isMobile(context) && screentWidth < 600
+                  height: supportMethods.isMobile(context) &&
+                          supportMethods.isMobileWidth(context)
                       ? 330.h
                       : 180.h),
               supportMethods.midButtons(context, 'PROJECTS', 'NEWS'),

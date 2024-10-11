@@ -95,81 +95,91 @@ class _CarouselViewsState extends State<CarouselViews> {
             context: context,
             builder: (BuildContext context) {
               return SafeArea(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(top: 80.h),
-                    child: Dialog(
-                      backgroundColor: Colors.transparent,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: 80.h),
+                      child: Dialog(
+                        backgroundColor: Colors.transparent,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
                         ),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            top: 50.h, left: 20.w, right: 20.w, bottom: 50.w),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 40.h),
-                            Text(
-                              item.title.toUpperCase(),
-                              style: supportMethods.getTextStyleWithDimensions(
-                                  context,
-                                  AppTextStyles.openDialogHeading,
-                                  12.sp,
-                                  18.sp),
-                            ),
-                            SizedBox(height: 20.h),
-                            HoverableElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                supportMethods.openUrl(item.url);
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text('Open link',
-                                          style: supportMethods
-                                              .getTextStyleWithDimensions(
-                                                  context,
-                                                  AppTextStyles.buttonText,
-                                                  7.sp,
-                                                  10)),
-                                      SizedBox(width: 10),
-                                      Icon(Icons.arrow_outward,
-                                          size: supportMethods.isMobile(context)
-                                              ? 10
-                                              : 18,
-                                          color: Colors.white,
-                                          weight: 5,
-                                          fill: 1.0,
-                                          grade: 1.0),
-                                    ],
-                                  ),
-                                ],
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              top: 50.h, left: 20.w, right: 20.w, bottom: 50.w),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(height: 40.h),
+                              Text(
+                                item.title.toUpperCase(),
+                                style:
+                                    supportMethods.getTextStyleWithDimensions(
+                                        context,
+                                        AppTextStyles.openDialogHeading,
+                                        12.sp,
+                                        18.sp),
                               ),
-                            ),
-                            SizedBox(height: 20.h),
-                            Text(
-                              item.description,
-                              style: supportMethods.getTextStyleWithDimensions(
-                                  context,
-                                  AppTextStyles.openDialogDescription,
-                                  12.sp,
-                                  14.sp),
-                            ),
-                          ],
+                              SizedBox(height: 20.h),
+                              HoverableElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  supportMethods.openUrl(item.url);
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text('OPEN LINK',
+                                            style: supportMethods
+                                                .getTextStyleWithDimensions(
+                                                    context,
+                                                    AppTextStyles.buttonText,
+                                                    supportMethods
+                                                            .isMobileWidth(
+                                                                context)
+                                                        ? 28.sp
+                                                        : 6.sp,
+                                                    10.sp)),
+                                        SizedBox(width: 10),
+                                        Icon(Icons.arrow_outward,
+                                            size:
+                                                supportMethods.isMobile(context)
+                                                    ? 10
+                                                    : 18,
+                                            color: Colors.white,
+                                            weight: 5,
+                                            fill: 1.0,
+                                            grade: 1.0),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 20.h),
+                              Text(
+                                item.description,
+                                style:
+                                    supportMethods.getTextStyleWithDimensions(
+                                        context,
+                                        AppTextStyles.openDialogDescription,
+                                        12.sp,
+                                        14.sp),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -193,14 +203,7 @@ class _CarouselViewsState extends State<CarouselViews> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(item.imageUrl,
-                    width: 220.w,
-                    height: 180.h,
-                    fit: BoxFit.contain,
-                    headers: const {
-                      'Access-Control-Allow-Origin': '*',
-                      'Access-Control-Allow-Methods': 'GET, OPTIONS',
-                      'Access-Control-Allow-Headers': 'Content-Type',
-                    }),
+                    width: 220.w, height: 180.h, fit: BoxFit.contain),
               ],
             ),
           ),

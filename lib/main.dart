@@ -20,7 +20,6 @@ void main() async {
       appId: const String.fromEnvironment('APP_ID'),
     ),
   );
-
   runApp(const MainApp());
 }
 
