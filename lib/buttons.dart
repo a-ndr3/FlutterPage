@@ -39,7 +39,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
           child: Icon(
             color: widget.color,
             widget.icon.icon,
-            size: supportMethods.isMobile(context) ? 25.sp : 25,
+            size: supportMethods.getCorrectSize(context, 65.sp, 25.sp, 25),
           ),
         ),
       ),
@@ -78,7 +78,9 @@ class _HoverableElevatedButtonState extends State<HoverableElevatedButton> {
       surfaceTintColor: Colors.transparent,
       foregroundColor: Colors.transparent,
       padding: supportMethods.isMobile(context)
-          ? EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h)
+          ? supportMethods.isMobileWidth(context)
+              ? EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h)
+              : EdgeInsets.symmetric(horizontal: 30.w, vertical: 15.h)
           : EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       side:
           const BorderSide(color: Color.fromRGBO(255, 255, 255, 0.8), width: 2),

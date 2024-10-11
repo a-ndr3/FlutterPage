@@ -9,8 +9,6 @@ class EnterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screentWirdth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -41,8 +39,8 @@ class EnterPage extends StatelessWidget {
                           snapshot.hasData) {
                         return CircleAvatar(
                           backgroundImage: snapshot.data,
-                          radius:
-                              supportMethods.isMobile(context) ? 120.r : 90.r,
+                          radius: supportMethods.getCorrectSize(
+                              context, 120.r, 110.r, 90.r),
                         );
                       } else {
                         return CircleAvatar(
@@ -61,7 +59,7 @@ class EnterPage extends StatelessWidget {
                 style: supportMethods.getTextStyleWithDimensions(
                     context,
                     AppTextStyles.enterPageHeadline,
-                    screentWirdth < 600 ? 32.sp : 24.sp,
+                    supportMethods.isMobileWidth(context) ? 38.sp : 24.sp,
                     48),
                 textAlign: TextAlign.center,
               ),
@@ -71,7 +69,7 @@ class EnterPage extends StatelessWidget {
                 style: supportMethods.getTextStyleWithDimensions(
                     context,
                     AppTextStyles.enterPageDescription,
-                    screentWirdth < 600 ? 22.sp : 16.sp,
+                    supportMethods.isMobileWidth(context) ? 28.sp : 16.sp,
                     18),
                 textAlign: TextAlign.center,
               ),
@@ -87,7 +85,9 @@ class EnterPage extends StatelessWidget {
                         style: supportMethods.getTextStyleWithDimensions(
                             context,
                             AppTextStyles.buttonText,
-                            screentWirdth < 600 ? 24.sp : 14.sp,
+                            supportMethods.isMobileWidth(context)
+                                ? 28.sp
+                                : 14.sp,
                             18)),
                   ],
                 ),

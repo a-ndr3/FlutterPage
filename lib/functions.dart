@@ -36,7 +36,6 @@ class SupportMethods {
   }
 
   Container midButtons(context, String btn1, String btn2) {
-    final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
       child: Row(
@@ -51,7 +50,7 @@ class SupportMethods {
               style: getTextStyleWithDimensions(
                   context,
                   AppTextStyles.buttonText,
-                  screenWidth < 600 ? 10.sp : 7.sp,
+                  isMobileWidth(context) ? 28.sp : 7.sp,
                   10.sp),
             ),
           ),
@@ -65,7 +64,7 @@ class SupportMethods {
               style: getTextStyleWithDimensions(
                   context,
                   AppTextStyles.buttonText,
-                  screenWidth < 600 ? 10.sp : 7.sp,
+                  isMobileWidth(context) ? 28.sp : 7.sp,
                   10.sp),
             ),
           ),
@@ -79,7 +78,7 @@ class SupportMethods {
               style: getTextStyleWithDimensions(
                   context,
                   AppTextStyles.buttonText,
-                  screenWidth < 600 ? 10.sp : 7.sp,
+                  isMobileWidth(context) ? 28.sp : 7.sp,
                   10.sp),
             ),
           ),
@@ -195,11 +194,7 @@ class SupportMethods {
     final ListResult result = await ref.listAll();
     final url = await result.items.first.getDownloadURL();
 
-    return NetworkImage(url, headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    });
+    return NetworkImage(url);
   }
 
   Future<String> fetchTxtFile(String fileName) async {
@@ -214,6 +209,22 @@ class SupportMethods {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return screenWidth < 600 || (screenWidth < 950 && screenHeight < 500);
+  }
+
+  double getCorrectSize(
+      context, double mobileSize, double mobileSideSize, double desktopSize) {
+    if (isMobile(context) && !isMobileWidth(context)) {
+      return mobileSideSize;
+    }
+    if (isMobile(context) && isMobileWidth(context)) {
+      return mobileSize;
+    }
+    return desktopSize;
+  }
+
+  bool isMobileWidth(context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth < 600;
   }
 
   TextStyle getTextStyleWithDimensions(
