@@ -7,6 +7,9 @@
       "hosting": {
         "ablokhin": [
           "ablokhin.web.app"
+        ],
+        "ablokhin-dev": [
+          "ablokhin.dev"
         ]
       }
     }
