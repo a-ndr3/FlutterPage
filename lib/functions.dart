@@ -237,7 +237,7 @@ class SupportMethods {
   bool isMobile(context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return screenWidth < 600 || (screenWidth < 950 && screenHeight < 500);
+    return screenWidth < 600 || (screenWidth < 1080 && screenHeight < 600);
   }
 
   double getCorrectSize(

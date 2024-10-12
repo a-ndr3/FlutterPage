@@ -177,9 +177,8 @@ class _CarouselViewsState extends State<CarouselViews> {
                                     supportMethods.getTextStyleWithDimensions(
                                         context,
                                         AppTextStyles.openDialogDescription,
-                                        supportMethods.isMobile(context)
-                                            ? 32.sp
-                                            : 12.sp,
+                                        supportMethods.getCorrectSize(
+                                            context, 32.sp, 18.sp, 12.sp),
                                         14.sp),
                               ),
                             ],
