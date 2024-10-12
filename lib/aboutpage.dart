@@ -37,7 +37,7 @@ class AboutPage extends StatelessWidget {
                                 context,
                                 AppTextStyles.aboutPageMainText,
                                 supportMethods.isMobileWidth(context)
-                                    ? 32.sp
+                                    ? 30.sp
                                     : 14.sp,
                                 15.sp)));
                   } else {
@@ -79,7 +79,7 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(
                   height: supportMethods.isMobileWidth(context)
-                      ? 200.h
+                      ? 180.h
                       : supportMethods.isMobile(context)
                           ? 80.h
                           : 180.h),
