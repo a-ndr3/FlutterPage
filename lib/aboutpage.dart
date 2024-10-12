@@ -36,7 +36,9 @@ class AboutPage extends StatelessWidget {
                             style: supportMethods.getTextStyleWithDimensions(
                                 context,
                                 AppTextStyles.aboutPageMainText,
-                                14.sp,
+                                supportMethods.isMobileWidth(context)
+                                    ? 20.sp
+                                    : 14.sp,
                                 15.sp)));
                   } else {
                     return new Container(
