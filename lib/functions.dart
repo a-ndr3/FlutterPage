@@ -24,21 +24,38 @@ class SupportMethods {
     }
   }
 
-  MouseRegion logoContainer(context) {
+  Container logoContainer(context) {
+    if (isMobileWidth(context)) {
+      return Container(
+        padding: EdgeInsets.all(20.w),
+        child: getMouseRegionForLogo(context),
+      );
+    } else {
+      return Container(
+        child: getMouseRegionForLogo(context),
+      );
+    }
+  }
+
+  MouseRegion getMouseRegionForLogo(context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
           openUrl("https://github.com/a-ndr3/FlutterPage");
         },
-        child: Padding(
+        child: Container(
+          color: Colors.transparent,
           padding:
               EdgeInsets.only(left: 30.w, top: 20.h, right: 0, bottom: 5.h),
           child: Align(
-              alignment: Alignment.topLeft,
-              child: Text('ANDRE',
-                  style: getTextStyleWithDimensions(
-                      context, AppTextStyles.logoTextStyle, 17.sp, 18))),
+            alignment: Alignment.topLeft,
+            child: Text(
+              'ANDRE',
+              style: getTextStyleWithDimensions(
+                  context, AppTextStyles.logoTextStyle, 17.sp, 18),
+            ),
+          ),
         ),
       ),
     );
@@ -169,7 +186,10 @@ class SupportMethods {
           child: Text(
             name,
             style: getTextStyleWithDimensions(
-                context, AppTextStyles.aboutPageContainer, 16.sp, 28),
+                context,
+                AppTextStyles.aboutPageContainer,
+                isMobileWidth(context) ? 30.sp : 16.sp,
+                28),
           ),
         ),
         SizedBox(height: 10.h),
