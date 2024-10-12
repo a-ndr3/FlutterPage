@@ -188,7 +188,7 @@ class SupportMethods {
             style: getTextStyleWithDimensions(
                 context,
                 AppTextStyles.aboutPageContainer,
-                isMobileWidth(context) ? 30.sp : 16.sp,
+                isMobileWidth(context) ? 40.sp : 16.sp,
                 28),
           ),
         ),

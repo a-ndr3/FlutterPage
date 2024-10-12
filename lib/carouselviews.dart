@@ -128,7 +128,7 @@ class _CarouselViewsState extends State<CarouselViews> {
                                         context,
                                         AppTextStyles.openDialogHeading,
                                         supportMethods.isMobileWidth(context)
-                                            ? 28.sp
+                                            ? 40.sp
                                             : 12.sp,
                                         18.sp),
                               ),
@@ -152,7 +152,7 @@ class _CarouselViewsState extends State<CarouselViews> {
                                                     supportMethods
                                                             .isMobileWidth(
                                                                 context)
-                                                        ? 24.sp
+                                                        ? 22.sp
                                                         : 6.sp,
                                                     10.sp)),
                                         SizedBox(width: 10),
@@ -178,7 +178,7 @@ class _CarouselViewsState extends State<CarouselViews> {
                                         context,
                                         AppTextStyles.openDialogDescription,
                                         supportMethods.isMobile(context)
-                                            ? 20.sp
+                                            ? 32.sp
                                             : 12.sp,
                                         14.sp),
                               ),
