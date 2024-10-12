@@ -78,7 +78,7 @@ class AboutPage extends StatelessWidget {
               SizedBox(
                   height: supportMethods.isMobile(context) &&
                           supportMethods.isMobileWidth(context)
-                      ? 330.h
+                      ? 250.h
                       : 180.h),
               supportMethods.midButtons(context, 'PROJECTS', 'NEWS'),
             ],
