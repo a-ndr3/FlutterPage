@@ -54,7 +54,7 @@ class AboutPage extends StatelessWidget {
               HoverableElevatedButton(
                 onPressed: () {
                   supportMethods.openUrl(
-                      "https://lh3.googleusercontent.com/d/1BO9U3BiBydBUV5O1yWRWovtwEfNIDruv");
+                      "https://drive.google.com/file/d/1Kr9aYNoCftvkMAjldJHpx-HvZAMlBXFr/view");
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
