@@ -47,41 +47,49 @@ class _CarouselViewsState extends State<CarouselViews> {
 
   @override
   Widget build(BuildContext context) {
+    final double contentHeight =
+        (supportMethods.isMobile(context) ? 350.h : 300.h) + 40.h;
+
+    Widget child;
     if (isLoading) {
-      return const Center(
+      child = const Center(
           child: CircularProgressIndicator(
         color: AppColors.primaryColorText,
       ));
-    }
-    if (hasError) {
-      return Center(
+    } else if (hasError) {
+      child = Center(
           child: Text('Error fetching carousel items',
               style: AppTextStyles.sidePanelText.copyWith(fontSize: 12.sp)));
-    }
+    } else {
+      final List<CarouselItem>? carouselItems =
+          CarouselItem.categorizedItems[widget.tag];
 
-    final List<CarouselItem>? carouselItems =
-        CarouselItem.categorizedItems[widget.tag];
-
-    if (carouselItems == null || carouselItems.isEmpty) {
-      return Center(
-          child: Text('No carousel items available',
-              style: AppTextStyles.sidePanelText.copyWith(fontSize: 12.sp)));
+      if (carouselItems == null || carouselItems.isEmpty) {
+        child = Center(
+            child: Text('No carousel items available',
+                style: AppTextStyles.sidePanelText.copyWith(fontSize: 12.sp)));
+      } else {
+        child = Container(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          child: CarouselSlider(
+            items: buildCarouselItems(carouselItems, context),
+            options: CarouselOptions(
+              height: supportMethods.isMobile(context) ? 350.h : 300.h,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 3),
+              viewportFraction: 0.33,
+            ),
+          ),
+        );
+      }
     }
 
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 600.w,
-        padding: EdgeInsets.symmetric(vertical: 20.h),
-        child: CarouselSlider(
-          items: buildCarouselItems(carouselItems, context),
-          options: CarouselOptions(
-            height: supportMethods.isMobile(context) ? 350.h : 300.h,
-            enlargeCenterPage: true,
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 3),
-            viewportFraction: 0.33,
-          ),
-        ),
+        height: contentHeight,
+        child: child,
       ),
     );
   }
