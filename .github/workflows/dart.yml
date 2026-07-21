@@ -41,7 +41,7 @@ jobs:
     needs: build_web
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Download Artifact
       uses: actions/download-artifact@v4
@@ -54,5 +54,5 @@ jobs:
       with:
         args: deploy --only hosting:ablokhin
       env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+        GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERSONALPAGEFLUTTER }}
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
