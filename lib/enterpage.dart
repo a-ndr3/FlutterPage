@@ -65,7 +65,7 @@ class EnterPage extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               Text(
-                'TECHNICIAN / ASSOCIATE SOFTWARE ENGINEER',
+                'SOFTWARE ENGINEER & RESEARCH ASSISTANT',
                 style: supportMethods.getTextStyleWithDimensions(
                     context,
                     AppTextStyles.enterPageDescription,
